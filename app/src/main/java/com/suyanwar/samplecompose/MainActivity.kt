@@ -16,10 +16,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -47,9 +48,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+val LocalText = compositionLocalOf<MutableState<TextFieldValue>> { error("No Text Found") }
+
 @Composable
-fun EditTextScreen(onTextChange: (TextFieldValue) -> Unit) {
-    var text by remember { mutableStateOf(TextFieldValue()) }
+fun EditTextScreen() {
+    val textState = LocalText.current
 
     Column(
         modifier = Modifier
@@ -59,10 +62,9 @@ fun EditTextScreen(onTextChange: (TextFieldValue) -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         BasicTextField(
-            value = text,
+            value = textState.value,
             onValueChange = { newText ->
-                text = newText
-                onTextChange(newText)
+                 textState.value = newText
             },
             textStyle = TextStyle(fontSize = 24.sp),
             modifier = Modifier
@@ -73,14 +75,15 @@ fun EditTextScreen(onTextChange: (TextFieldValue) -> Unit) {
 }
 
 @Composable
-fun ResultScreen(text: TextFieldValue) {
+fun ResultScreen() {
+    val textState = LocalText.current
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Green20)
     ) {
         Text(
-            text = text.text,
+            text = textState.value.text,
             fontSize = 24.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(16.dp)
@@ -90,21 +93,21 @@ fun ResultScreen(text: TextFieldValue) {
 
 @Composable
 fun FullScreen() {
-    var text by remember { mutableStateOf(TextFieldValue()) }
-    Box(contentAlignment = Alignment.Center) {
-        Column {
-            Row(modifier = Modifier
-                .weight(1.0f)
-                .fillMaxWidth()) {
-                EditTextScreen(onTextChange = { newText ->
-                    text = newText
-                })
-            }
+    val textState = remember { mutableStateOf(TextFieldValue()) }
+    CompositionLocalProvider(LocalText provides textState) {
+        Box(contentAlignment = Alignment.Center) {
+            Column {
+                Row(modifier = Modifier
+                    .weight(1.0f)
+                    .fillMaxWidth()) {
+                    EditTextScreen()
+                }
 
-            Row(modifier = Modifier
-                .weight(1.0f)
-                .fillMaxWidth()) {
-                ResultScreen(text = text)
+                Row(modifier = Modifier
+                    .weight(1.0f)
+                    .fillMaxWidth()) {
+                    ResultScreen()
+                }
             }
         }
     }
