@@ -17,6 +17,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.mutableStateOf
@@ -77,6 +78,12 @@ fun EditTextScreen() {
 @Composable
 fun ResultScreen() {
     val textState = LocalText.current
+
+    println("It will be logged every recomposition happen")
+
+    LaunchedEffect(Unit) {
+        textState.value = TextFieldValue("Please type something...")
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
