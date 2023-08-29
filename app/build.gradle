@@ -20,79 +20,79 @@ android {
         }
     }
 
-//    signingConfigs {
-//        release {
-//            keyAlias "sample-compose"
-//            keyPassword "sample_compose"
-//            storeFile file('../sample_compose.keystore')
-//            storePassword "sample_compose"
-//        }
-//    }
-//
-//    buildTypes {
-//        release {
-//            signingConfig signingConfigs.release
-//            minifyEnabled true
-//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//        }
-//
-//        debug {
-//            crunchPngs false
-//            ext.alwaysUpdateBuildId = false
-//        }
-//
-//        dev {
-//            initWith buildTypes.debug
-//            buildConfigField "String", "URL_BASE", "\"https://dev.google.com\""
-//            signingConfig signingConfigs.debug
-//        }
-//
-//        staging {
-//            initWith buildTypes.release
-//            debuggable true
-//            buildConfigField "String", "URL_BASE", "\"https://staging.google.com\""
-//        }
-//
-//        live {
-//            initWith buildTypes.release
-//            debuggable false
-//            buildConfigField "String", "URL_BASE", "\"https://google.com\""
-//        }
-//    }
-//
-//    flavorDimensions += "environment"
-//
-//    variantFilter { variant ->
-//        if (variant.buildType.name.endsWith('release') || variant.buildType.name.endsWith('debug')) {
-//            // Gradle ignores any variants that satisfy the conditions above.
-//            setIgnore(true)
-//        }
-//    }
-//
-//    productFlavors {
-//        growth {
-//            dimension = "environment"
-//            resConfigs "xhdpi"
-//            versionNameSuffix "-growth"
-//            applicationId "com.suyanwar.samplecompose.growth"
-//        }
-//        experience {
-//            dimension = "environment"
-//            resConfigs "xhdpi"
-//            versionNameSuffix "-experience"
-//            applicationId "com.suyanwar.samplecompose.experience"
-//        }
-//        releaseCandidate {
-//            dimension = "environment"
-//            resConfigs "xhdpi"
-//            versionNameSuffix "-rc"
-//            applicationId "com.suyanwar.samplecompose.release"
-//        }
-//        sample {
-//            dimension = "environment"
-//            applicationId "com.suyanwar.samplecompose"
-//        }
-//    }
+    signingConfigs {
+        release {
+            keyAlias "sample-compose"
+            keyPassword "sample_compose"
+            storeFile file('../sample_compose.keystore')
+            storePassword "sample_compose"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            crunchPngs false
+            ext.alwaysUpdateBuildId = false
+        }
+
+        dev {
+            initWith buildTypes.debug
+            buildConfigField "String", "URL_BASE", "\"https://dev.google.com\""
+            signingConfig signingConfigs.debug
+        }
+
+        staging {
+            initWith buildTypes.release
+            debuggable true
+            buildConfigField "String", "URL_BASE", "\"https://staging.google.com\""
+        }
+
+        live {
+            initWith buildTypes.release
+            debuggable false
+            buildConfigField "String", "URL_BASE", "\"https://google.com\""
+        }
+    }
+
+    flavorDimensions += "environment"
+
+    variantFilter { variant ->
+        if (variant.buildType.name.endsWith('release') || variant.buildType.name.endsWith('debug')) {
+            // Gradle ignores any variants that satisfy the conditions above.
+            setIgnore(true)
+        }
+    }
+
+    productFlavors {
+        growth {
+            dimension = "environment"
+            resConfigs "xhdpi"
+            versionNameSuffix "-growth"
+            applicationId "com.suyanwar.samplecompose.growth"
+        }
+        experience {
+            dimension = "environment"
+            resConfigs "xhdpi"
+            versionNameSuffix "-experience"
+            applicationId "com.suyanwar.samplecompose.experience"
+        }
+        releaseCandidate {
+            dimension = "environment"
+            resConfigs "xhdpi"
+            versionNameSuffix "-rc"
+            applicationId "com.suyanwar.samplecompose.release"
+        }
+        sample {
+            dimension = "environment"
+            applicationId "com.suyanwar.samplecompose"
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
