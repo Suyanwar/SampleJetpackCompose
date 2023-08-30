@@ -55,6 +55,8 @@ val LocalText = compositionLocalOf<MutableState<TextFieldValue>> { error("No Tex
 fun EditTextScreen() {
     val textState = LocalText.current
 
+    println("It will be logged every recomposition happened 1")
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -79,7 +81,6 @@ fun EditTextScreen() {
 fun ResultScreen() {
     val textState = LocalText.current
 
-    println("It will be logged every recomposition happened")
 
     LaunchedEffect(Unit) {
         textState.value = TextFieldValue("Please type something...")
