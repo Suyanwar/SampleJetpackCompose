@@ -99,6 +99,7 @@ fun ResultScreen() {
             modifier = Modifier.padding(16.dp)
         )
     }
+    println("It will be logged every recomposition happened 4")
 }
 
 @Composable
