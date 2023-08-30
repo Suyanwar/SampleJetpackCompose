@@ -75,6 +75,7 @@ fun EditTextScreen() {
                 .padding(16.dp)
         )
     }
+    println("It will be logged every recomposition happened 2")
 }
 
 @Composable
