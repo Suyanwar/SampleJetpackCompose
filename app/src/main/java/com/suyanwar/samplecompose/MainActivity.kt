@@ -82,6 +82,7 @@ fun EditTextScreen() {
 fun ResultScreen() {
     val textState = LocalText.current
 
+    println("It will be logged every recomposition happened 3")
 
     LaunchedEffect(Unit) {
         textState.value = TextFieldValue("Please type something...")
