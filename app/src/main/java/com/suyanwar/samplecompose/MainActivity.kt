@@ -96,12 +96,6 @@ fun ResultScreen() {
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(16.dp)
         )
-        Text(
-            text = textState.value.text,
-            fontSize = 24.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(16.dp)
-        )
     }
 }
 
