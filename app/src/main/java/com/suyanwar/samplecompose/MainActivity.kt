@@ -31,7 +31,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.suyanwar.samplecompose.ui.theme.Blue10
-import com.suyanwar.samplecompose.ui.theme.Green100
 import com.suyanwar.samplecompose.ui.theme.Green20
 import com.suyanwar.samplecompose.ui.theme.SampleComposeTheme
 
