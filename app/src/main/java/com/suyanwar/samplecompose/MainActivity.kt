@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.suyanwar.samplecompose.ui.theme.Blue10
+import com.suyanwar.samplecompose.ui.theme.Green100
 import com.suyanwar.samplecompose.ui.theme.Green20
 import com.suyanwar.samplecompose.ui.theme.SampleComposeTheme
 
@@ -79,7 +80,7 @@ fun EditTextScreen() {
 fun ResultScreen() {
     val textState = LocalText.current
 
-    println("It will be logged every recomposition happen")
+    println("It will be logged every recomposition happened")
 
     LaunchedEffect(Unit) {
         textState.value = TextFieldValue("Please type something...")
@@ -89,6 +90,12 @@ fun ResultScreen() {
             .fillMaxSize()
             .background(Green20)
     ) {
+        Text(
+            text = textState.value.text,
+            fontSize = 24.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(16.dp)
+        )
         Text(
             text = textState.value.text,
             fontSize = 24.sp,

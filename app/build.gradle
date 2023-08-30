@@ -21,6 +21,12 @@ android {
     }
 
     signingConfigs {
+        debug {
+            keyAlias "sample-compose-debug"
+            keyPassword "sample_compose_debug"
+            storeFile file('../sample_compose_debug.keystore')
+            storePassword "sample_compose_debug"
+        }
         release {
             keyAlias "sample-compose"
             keyPassword "sample_compose"
@@ -30,21 +36,22 @@ android {
     }
 
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            crunchPngs false
+            ext.alwaysUpdateBuildId = false
+        }
+
         release {
             signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
-        debug {
-            crunchPngs false
-            ext.alwaysUpdateBuildId = false
-        }
-
         dev {
             initWith buildTypes.debug
+            debuggable true
             buildConfigField "String", "URL_BASE", "\"https://dev.google.com\""
-            signingConfig signingConfigs.debug
         }
 
         staging {
@@ -130,6 +137,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
-    debugImplementation 'androidx.compose.ui:ui-tooling'
-    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+    devImplementation 'androidx.compose.ui:ui-tooling'
+    devImplementation 'androidx.compose.ui:ui-test-manifest'
+    stagingImplementation 'androidx.compose.ui:ui-tooling'
+    stagingImplementation 'androidx.compose.ui:ui-test-manifest'
 }
